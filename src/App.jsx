@@ -2,6 +2,7 @@ import GlobalStyle from './assets/styles/globalStyle.js';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TokenContext from './contexts/tokenContext.js';
+import UserContext from './contexts/userContext.js';
 
 export default function App() {
 

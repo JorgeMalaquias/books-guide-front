@@ -23,7 +23,7 @@ export default function TitlePage() {
         }
 
         function TitleInfos() {
-            const [isItOnMyCollection, setIsItOnMyCollection] = useState(false);
+            const [isItOnMyCollection, setIsItOnMyCollection] = useState(true);
             const [numberofCollections, setNumberofCollections] = useState(0);
             //get from api if it is in fact
             function addingTitleToCollection() {
@@ -32,7 +32,7 @@ export default function TitlePage() {
             return (
                 <TitleInfosTag>
                     {(isItOnMyCollection) ? 
-                    <div>Na sua coleção</div> 
+                    <div>Esta edição está na sua coleção</div> 
                     : 
                     <AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
 

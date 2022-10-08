@@ -27,7 +27,7 @@ export default function App() {
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/profile/:userId' element={<ProfilePage />} />
-                        <Route path='/title' element={<TitlePage />} />
+                        <Route path='/title/:titleId' element={<TitlePage />} />
                         <Route path='/search' element={<SearchPage />} />
                     </Routes>
                 </BrowserRouter>

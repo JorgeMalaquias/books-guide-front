@@ -3,7 +3,7 @@ import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
 import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
-import { Container, Page } from './TitlePageStyle.js';
+import { AddToCollection, Container, Page, TitleCoverTag, TitleInfosTag } from './TitlePageStyle.js';
 
 export default function TitlePage() {
 
@@ -15,22 +15,40 @@ export default function TitlePage() {
 
         function TitleCover(){
             return(
-                <>
-                    <strong></strong>
-                    <img src={titleData.imageUrl} alt="" />
-                </>
+                <TitleCoverTag>
+                    <strong>xablau</strong>
+                    <img src="https://m.media-amazon.com/images/I/61blY+DiS4L.jpg" alt={titleData.name}/>
+                </TitleCoverTag>
+            );
+        }
+
+        function TitleInfos(){
+            const [isItOnMyCollection,setIsItOnMyCollection]=useState(false);
+            const [numberofCollections,setNumberofCollections]=useState(0);
+            //get from api if it is in fact
+            function addingTitleToCollection(){
+                //create a relation on the database
+            }
+            return(
+                <TitleInfosTag>
+                    {(isItOnMyCollection)? <div>Na sua coleção</div>:<AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
+                    <div>Esta edição está em <strong>{numberofCollections}</strong> coleções!</div>
+                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad voluptatum dicta adipisci sed, dolore accusantium cumque maxime voluptatibus! Nam libero mollitia delectus aut molestiae ipsum eius eaque debitis iure? Reiciendis!</div>
+                </TitleInfosTag>
+                
             );
         }
         return(
             <Container>
-
+                <TitleCover/>
+                <TitleInfos/>
             </Container>
         );
     }
     return (
         <Page>
             <Header />
-            {/* Comentário do seu código */}
+            <PageContent/>
             <Bottom />
         </Page>
     );

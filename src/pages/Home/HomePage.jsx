@@ -23,7 +23,7 @@ export default function HomePage() {
         function Title({ id, imageUrl, name }) {
             const navigate = useNavigate();
             return (
-                <TitleTag onClick={() => navigate(`/profile/${id}`)}>
+                <TitleTag onClick={() => navigate(`/title/${id}`)}>
                     <img src={imageUrl} alt={name} />
                     <div>{id}</div>
                 </TitleTag>

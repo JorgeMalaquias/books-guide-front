@@ -3,7 +3,7 @@ import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
 import { Container, HeaderTag, HeaderTag2 } from './HeaderStyle.js';
 import { BiBookOpen } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
 
@@ -11,11 +11,12 @@ export default function Header() {
     const { user, setUser } = useContext(UserContext);
     const [disable, setDisable] = useState(false);
     const [searchName, setSearchName] = useState('');
-    const [searchType, setSearchType] = useState('');
+    const [searchType, setSearchType] = useState('title');
+    const navigate = useNavigate();
 
-    function submitingSearch(event, { searchName, searchType }) {
+    function submitingSearch(event) {
         event.preventDefault();
-        console.log('oissa')
+        navigate(`/search/${searchType}`);
     }
     function loggingOut(){
         setToken('');
@@ -24,9 +25,9 @@ export default function Header() {
 
     function SearchForm() {
         return (
-            <form style={{minWidth:'320px'}} onSubmit={(e) => submitingSearch(e, { searchName, searchType })}>
+            <form style={{minWidth:'320px'}} onSubmit={(e) => submitingSearch(e)}>
 
-                <select name="searchName" id="searchName" required onChange={(e) => { setSearchType(e.target.value) }} value={searchType}>
+                <select value={searchType}  required onChange={(e) => { setSearchType(e.target.value) }} >
                     <option value="title">Título</option>
                     <option value="user">Usuário</option>
                 </select>

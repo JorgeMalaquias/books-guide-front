@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TokenContext from './contexts/tokenContext.js';
 import UserContext from './contexts/userContext.js';
+import SearchNameContext from './contexts/searchNameContext.js';
 import HomePage from './pages/Home/HomePage.jsx';
 import RegisterPage from './pages/Register/RegisterPage.jsx';
 import LoginPage from './pages/Login/LoginPage.jsx';
@@ -15,22 +16,25 @@ export default function App() {
 
     const [token, setToken] = useState('gfrghthrthgtrfg');
     const [user, setUser] = useState('');
-
+    const [searchName, setSearchName] = useState('');
+    
     return (
         <TokenContext.Provider value={{ token, setToken }}>
             <UserContext.Provider value={{ user, setUser }}>
-                <BrowserRouter>
-                    <ResetStyle/>
-                    <GlobalStyle />
-                    <Routes>
-                        <Route path='/' element={<HomePage />} />
-                        <Route path='/register' element={<RegisterPage />} />
-                        <Route path='/login' element={<LoginPage />} />
-                        <Route path='/profile/:userId' element={<ProfilePage />} />
-                        <Route path='/title/:titleId' element={<TitlePage />} />
-                        <Route path='/search' element={<SearchPage />} />
-                    </Routes>
-                </BrowserRouter>
+                <SearchNameContext.Provider value={{ searchName, setSearchName }}>
+                    <BrowserRouter>
+                        <ResetStyle />
+                        <GlobalStyle />
+                        <Routes>
+                            <Route path='/' element={<HomePage />} />
+                            <Route path='/register' element={<RegisterPage />} />
+                            <Route path='/login' element={<LoginPage />} />
+                            <Route path='/profile/:userId' element={<ProfilePage />} />
+                            <Route path='/title/:titleId' element={<TitlePage />} />
+                            <Route path='/search/:type' element={<SearchPage />} />
+                        </Routes>
+                    </BrowserRouter>
+                </SearchNameContext.Provider>
             </UserContext.Provider>
         </TokenContext.Provider>
     );

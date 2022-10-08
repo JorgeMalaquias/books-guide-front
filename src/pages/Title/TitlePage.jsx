@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
 import Header from '../../components/Header/Header.jsx';
@@ -6,7 +7,7 @@ import Bottom from '../../components/Bottom/Bottom.jsx';
 import { AddToCollection, Container, Page, TitleCoverTag, TitleInfosTag } from './TitlePageStyle.js';
 
 export default function TitlePage() {
-
+    const { titleId } = useParams();
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
 
@@ -31,15 +32,15 @@ export default function TitlePage() {
             }
             return (
                 <TitleInfosTag>
-                    {(isItOnMyCollection) ? 
-                    <div>Esta edição está na sua coleção</div> 
-                    : 
-                    <AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
+                    {(isItOnMyCollection) ?
+                        <div>Esta edição está na sua coleção</div>
+                        :
+                        <AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
 
                     <div>Esta edição está em <strong>{numberofCollections}</strong> coleções!</div>
 
-                    <div style={{display:'flex', flexDirection:'column'}}>
-                        <strong style={{marginBottom:'10px'}}>Descrição</strong>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <strong style={{ marginBottom: '10px' }}>Descrição</strong>
                         {titleData.description}
                     </div>
                 </TitleInfosTag>

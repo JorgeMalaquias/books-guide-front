@@ -10,45 +10,53 @@ export default function TitlePage() {
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
 
-    function PageContent(){
-        const[titleData,setTitleData] = useState('');
+    function PageContent() {
+        const [titleData, setTitleData] = useState('');
 
-        function TitleCover(){
-            return(
+        function TitleCover() {
+            return (
                 <TitleCoverTag>
                     <strong>xablau</strong>
-                    <img src="https://m.media-amazon.com/images/I/61blY+DiS4L.jpg" alt={titleData.name}/>
+                    <img src="https://m.media-amazon.com/images/I/61blY+DiS4L.jpg" alt={titleData.name} />
                 </TitleCoverTag>
             );
         }
 
-        function TitleInfos(){
-            const [isItOnMyCollection,setIsItOnMyCollection]=useState(false);
-            const [numberofCollections,setNumberofCollections]=useState(0);
+        function TitleInfos() {
+            const [isItOnMyCollection, setIsItOnMyCollection] = useState(false);
+            const [numberofCollections, setNumberofCollections] = useState(0);
             //get from api if it is in fact
-            function addingTitleToCollection(){
+            function addingTitleToCollection() {
                 //create a relation on the database
             }
-            return(
+            return (
                 <TitleInfosTag>
-                    {(isItOnMyCollection)? <div>Na sua coleção</div>:<AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
+                    {(isItOnMyCollection) ? 
+                    <div>Na sua coleção</div> 
+                    : 
+                    <AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
+
                     <div>Esta edição está em <strong>{numberofCollections}</strong> coleções!</div>
-                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad voluptatum dicta adipisci sed, dolore accusantium cumque maxime voluptatibus! Nam libero mollitia delectus aut molestiae ipsum eius eaque debitis iure? Reiciendis!</div>
+
+                    <div style={{display:'flex', flexDirection:'column'}}>
+                        <strong style={{marginBottom:'10px'}}>Descrição</strong>
+                        {titleData.description}
+                    </div>
                 </TitleInfosTag>
-                
+
             );
         }
-        return(
+        return (
             <Container>
-                <TitleCover/>
-                <TitleInfos/>
+                <TitleCover />
+                <TitleInfos />
             </Container>
         );
     }
     return (
         <Page>
             <Header />
-            <PageContent/>
+            <PageContent />
             <Bottom />
         </Page>
     );

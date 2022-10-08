@@ -55,7 +55,7 @@ export const TitleInfosTag = styled.div`
         padding:10px;
         margin-top: 100px;
         > *{
-            
+            max-width: 600px;
             background-color: brown;
             border-radius: 6px;
             color: white;

@@ -80,6 +80,7 @@ export default function HomePage() {
             const [author,setAuthor] = useState('');
             const [publisher,setPublisher] = useState('');
             const [imageUrl,setImageUrl] = useState('');
+            const [description,setDescription] = useState('');
             const [disable, setDisable] = useState(false);
             //send data to api
             function creatingNewTitle(event){
@@ -97,6 +98,8 @@ export default function HomePage() {
                     <input value={publisher} type="text" placeholder='Digite a editora' required onChange={(e) => { setPublisher(e.target.value) }}/>
 
                     <input value={imageUrl} type="text" placeholder='Digite a url da imagem da capa' required onChange={(e) => { setImageUrl(e.target.value) }}/>
+
+                    <input value={description} type="text" placeholder='Digite uma descrição/sinopse para o título' required onChange={(e) => { setDescription(e.target.value) }}/>
 
                     <button style={{width:'fit-content', height:'fit-content'}} type={"submit"} disabled={disable}>Criar novo título</button>
 

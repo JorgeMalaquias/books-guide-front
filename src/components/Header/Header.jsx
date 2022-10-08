@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
+import SearchNameContext from '../../contexts/searchNameContext.js';
 import { Container, HeaderTag, HeaderTag2 } from './HeaderStyle.js';
 import { BiBookOpen } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,8 +11,8 @@ export default function Header() {
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
     const [disable, setDisable] = useState(false);
-    const [searchName, setSearchName] = useState('');
-    const [searchType, setSearchType] = useState('title');
+    const { searchName, setSearchName } = useContext(SearchNameContext);
+    const [searchType, setSearchType] = useState('titles');
     const navigate = useNavigate();
 
     function submitingSearch(event) {
@@ -28,8 +29,8 @@ export default function Header() {
             <form style={{minWidth:'320px'}} onSubmit={(e) => submitingSearch(e)}>
 
                 <select value={searchType}  required onChange={(e) => { setSearchType(e.target.value) }} >
-                    <option value="title">Título</option>
-                    <option value="user">Usuário</option>
+                    <option value="titles">Título</option>
+                    <option value="users">Usuário</option>
                 </select>
 
                 <input value={searchName} type='text' placeholder="Digite aqui a sua busca" required onChange={(e) => { setSearchName(e.target.value) }} />

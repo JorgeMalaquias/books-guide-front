@@ -16,7 +16,7 @@ export default function HomePage() {
     function PageContent() {
         function AppInfos() {
             return (
-                <div style={{ marginBottom: '30px', fontSize:'30px', lineHeight: '50px' }}>Books Guide é um site para você colecionador, poder catalogar sua coleção, tendo maior controle sobre ela. Sobre quais edições você tem ou não tem de determinado título. Você pode organizar suas leituras, suas avaliações. Você pode também interagir com outros colecionadores, trocar ideias sobre determinados títulos, etc.</div>
+                <div style={{ marginBottom: '30px', lineHeight: '50px' }}>Books Guide é um site para você colecionador, poder catalogar sua coleção, tendo maior controle sobre ela. Sobre quais edições você tem ou não tem de determinado título. Você pode organizar suas leituras, suas avaliações. Você pode também interagir com outros colecionadores, trocar ideias sobre determinados títulos, etc.</div>
             );
         }
 
@@ -79,6 +79,7 @@ export default function HomePage() {
             const [name,setName] = useState('');
             const [author,setAuthor] = useState('');
             const [publisher,setPublisher] = useState('');
+            const [imageUrl,setImageUrl] = useState('');
             const [disable, setDisable] = useState(false);
             //send data to api
             function creatingNewTitle(event){
@@ -94,6 +95,8 @@ export default function HomePage() {
                     <input value={author} type="text" placeholder='Digite o autor' required onChange={(e) => { setAuthor(e.target.value) }}/>
 
                     <input value={publisher} type="text" placeholder='Digite a editora' required onChange={(e) => { setPublisher(e.target.value) }}/>
+
+                    <input value={imageUrl} type="text" placeholder='Digite a url da imagem da capa' required onChange={(e) => { setImageUrl(e.target.value) }}/>
 
                     <button style={{width:'fit-content', height:'fit-content'}} type={"submit"} disabled={disable}>Criar novo título</button>
 

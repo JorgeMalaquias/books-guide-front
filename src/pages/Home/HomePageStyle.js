@@ -39,6 +39,15 @@ export const Container = styled.div`
         color: white;
         margin-bottom: 70px;
     }
+    *{
+        font-size: 30px;
+    }
+    @media (max-width: 650px) {
+        *{
+            font-size: 20px;
+        }
+        flex-direction: column;
+    }
 `
 
 export const TitlesTag = styled.div`

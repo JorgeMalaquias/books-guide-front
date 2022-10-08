@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    background-color: brown;
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
+    padding: 6px;
     > *{
         height: 50%;
         width: 100%;
@@ -13,10 +18,10 @@ export const Container = styled.div`
     form{
         display: flex;
         align-items: center;
-        width: 34%;
+        width: 38%;
         height: 34%;
         select{
-            width: 20%;
+            width: 28%;
         }
         input{
             width: 60%;
@@ -27,7 +32,6 @@ export const Container = styled.div`
     }
 `
 export const HeaderTag = styled.div`
-    background-color: brown;
     width: 100%;
     height: 100%;
     display: flex;
@@ -41,7 +45,7 @@ export const HeaderTag = styled.div`
     }
 `
 export const HeaderTag2 = styled.div`
-    background-color: brown;
+    
     width: 100%;
     height: 100%;
     display: none;

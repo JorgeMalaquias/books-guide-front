@@ -24,11 +24,11 @@ export default function Header() {
 
     function SearchForm() {
         return (
-            <form onSubmit={(e) => submitingSearch(e, { searchName, searchType })}>
+            <form style={{minWidth:'320px'}} onSubmit={(e) => submitingSearch(e, { searchName, searchType })}>
 
                 <select name="searchName" id="searchName" required onChange={(e) => { setSearchType(e.target.value) }} value={searchType}>
-                    <option value="title">Title</option>
-                    <option value="user">User</option>
+                    <option value="title">Título</option>
+                    <option value="user">Usuário</option>
                 </select>
 
                 <input value={searchName} type='text' placeholder="Digite aqui a sua busca" required onChange={(e) => { setSearchName(e.target.value) }} />

@@ -9,18 +9,18 @@ import LoginPage from './pages/Login/LoginPage.jsx';
 import ProfilePage from './pages/Profile/ProfilePage.jsx';
 import TitlePage from './pages/Title/TitlePage.jsx';
 import SearchPage from './pages/Search/SearchPage.jsx';
-import Reset from './assets/styles/reset.js';
+import ResetStyle from './assets/styles/reset.js';
 
 export default function App() {
 
-    const [token, setToken] = useState('');
+    const [token, setToken] = useState('gfrghthrthgtrfg');
     const [user, setUser] = useState('');
 
     return (
         <TokenContext.Provider value={{ token, setToken }}>
             <UserContext.Provider value={{ user, setUser }}>
                 <BrowserRouter>
-                    <Reset/>
+                    <ResetStyle/>
                     <GlobalStyle />
                     <Routes>
                         <Route path='/' element={<HomePage />} />

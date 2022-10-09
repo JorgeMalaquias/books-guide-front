@@ -14,7 +14,7 @@ import ResetStyle from './assets/styles/reset.js';
 
 export default function App() {
 
-    const [token, setToken] = useState('gfrghthrthgtrfg');
+    const [token, setToken] = useState('');
     const [user, setUser] = useState('');
     const [searchName, setSearchName] = useState('');
     

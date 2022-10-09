@@ -9,31 +9,35 @@ export default function LoginPage() {
 
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
-    const [email,setEmail] = useState('');
-    const [password,setPassword]=useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [disable, setDisable] = useState(false);
 
-    function logging(){
+    function logging() {
         // realizar requisição, trocar a pagina, receber o token, desabilitar forms até ter um retorno, exibir eventuais erros
+        setDisable(true);
+        //
+
+        setDisable(false);//inserir no retorno da promise
     }
 
-    function PageContent(){
-        return(
+    function PageContent() {
+        return (
             <Container>
                 <strong>Insira os dados para fazer login</strong>
                 <form onSubmit={logging}>
-                    <input value={email} type="text" placeholder='Digite seu email' onChange={(e)=>setEmail(e.target.value)}/>
-                    <input value={password} type="text" placeholder='Digite sua senha'onChange={(e)=>setPassword(e.target.value)}/>
-                    <button style={{width:'fit-content', height:'fit-content'}} type={"submit"} disabled={disable}>Fazer login</button>
+                    <input value={email} type="text" placeholder='Digite seu email' onChange={(e) => setEmail(e.target.value)} />
+                    <input value={password} type="text" placeholder='Digite sua senha' onChange={(e) => setPassword(e.target.value)} />
+                    <button style={{ width: 'fit-content', height: 'fit-content' }} type={"submit"} disabled={disable}>Fazer login</button>
                 </form>
             </Container>
         );
     }
     return (
         <Page>
-            <Header/>
-            <PageContent/>
-            <Bottom/>
+            <Header />
+            <PageContent />
+            <Bottom />
         </Page>
     );
 }

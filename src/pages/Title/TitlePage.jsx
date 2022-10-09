@@ -4,7 +4,7 @@ import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
 import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
-import { AddToCollection, Container, Page, TitleCoverTag, TitleInfosTag } from './TitlePageStyle.js';
+import { AddRemoveToCollection, Container, Page, TitleCoverTag, TitleInfosTag } from './TitlePageStyle.js';
 
 export default function TitlePage() {
     const { titleId } = useParams();
@@ -30,12 +30,20 @@ export default function TitlePage() {
             function addingTitleToCollection() {
                 //create a relation on the database
             }
+            function removingTitleFromCollection() {
+                //create a relation on the database
+            }
             return (
                 <TitleInfosTag>
                     {(isItOnMyCollection) ?
-                        <div>Esta edição está na sua coleção</div>
+                        <>
+                            <div>Esta edição está na sua coleção</div>
+                            <AddRemoveToCollection onClick={removingTitleFromCollection}>Remover da minha coleção</AddRemoveToCollection >
+
+                        </>
+
                         :
-                        <AddToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddToCollection>}
+                        <AddRemoveToCollection onClick={addingTitleToCollection}>Adicionar à minha coleção</AddRemoveToCollection >}
 
                     <div>Esta edição está em <strong>{numberofCollections}</strong> coleções!</div>
 

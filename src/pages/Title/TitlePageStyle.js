@@ -70,7 +70,7 @@ export const TitleInfosTag = styled.div`
         }
     
 `
-export const AddToCollection = styled.div`
+export const AddRemoveToCollection = styled.div`
     
     cursor: pointer;
 `

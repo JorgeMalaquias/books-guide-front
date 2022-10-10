@@ -55,17 +55,17 @@ export default function RegisterPage() {
                 <strong>Insira os dados para fazer seu cadastro</strong>
                 <form onSubmit={(e)=>registering(e)}>
 
-                    <input value={name} type="text" placeholder='Digite seu nome de usuário' onChange={(e) => setName(e.target.value)} />
+                    <input cyName={'inputName'} value={name} type="text" placeholder='Digite seu nome de usuário' onChange={(e) => setName(e.target.value)} />
 
-                    <input value={imageUrl} type="text" placeholder='Digite a url da sua imagem' onChange={(e) => setImageUrl(e.target.value)} />
+                    <input cyName={'inputImageUrl'}  value={imageUrl} type="text" placeholder='Digite a url da sua imagem' onChange={(e) => setImageUrl(e.target.value)} />
 
-                    <input value={email} type="text" placeholder='Digite seu email' onChange={(e) => setEmail(e.target.value)} />
+                    <input cyName={'inputEmail'}  value={email} type="text" placeholder='Digite seu email' onChange={(e) => setEmail(e.target.value)} />
 
-                    <input value={password} type="text" placeholder='Digite sua senha' onChange={(e) => setPassword(e.target.value)} />
+                    <input cyName={'inputPassword'} value={password} type="text" placeholder='Digite sua senha' onChange={(e) => setPassword(e.target.value)} />
 
-                    <input value={confirmPassword} type="text" placeholder='Digite sua senha novamente' onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input cyName={'inputConfirmPassword'} value={confirmPassword} type="text" placeholder='Digite sua senha novamente' onChange={(e) => setConfirmPassword(e.target.value)} />
 
-                    <button style={{ width: 'fit-content', height: 'fit-content' }} type={"submit"} disabled={disable}>Cadastrar</button>
+                    <button cyName={'submitButton'} style={{ width: 'fit-content', height: 'fit-content' }} type={"submit"} disabled={disable}>Cadastrar</button>
                 </form>
             </Container>
         );

@@ -4,13 +4,15 @@ import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
 import TokenContext from '../../contexts/tokenContext.js';
 import UserContext from '../../contexts/userContext.js';
-import { Container, FormTag, GeneralInfoTag, GeneralSign, Page, TitlesTag, TitleTag } from './HomePageStyle.js';
+import { Container, FormTag, GeneralInfoTag, Page, TitlesTag, TitleTag } from './HomePageStyle.js';
+import { API_URL, config } from '../../configs/data.js';
+import axios from 'axios';
 
 export default function HomePage() {
 
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
-
+console.log(token)
 
 
     function PageContent() {
@@ -82,10 +84,22 @@ export default function HomePage() {
             const [imageUrl,setImageUrl] = useState('');
             const [description,setDescription] = useState('');
             const [disable, setDisable] = useState(false);
-            //send data to api
+
             function creatingNewTitle(event){
                 event.preventDefault();
-                console.log(name);
+                const body={
+                    name,
+                    imageUrl,
+                    author,
+                    publisher,
+                    description
+                }
+                axios.post(`${API_URL}/titles`,body, config(token)).then((r)=>{
+                    alert('Título cadastrado com sucesso!');
+                }).catch(error => {
+                    alert('Ocorreu algum problema. Título não cadastrado!');
+                    console.error(error);
+                })
             }
             return (
                 <FormTag onSubmit={(e) => creatingNewTitle(e)}>
@@ -99,7 +113,7 @@ export default function HomePage() {
 
                     <input value={imageUrl} type="text" placeholder='Digite a url da imagem da capa' required onChange={(e) => { setImageUrl(e.target.value) }}/>
 
-                    <input value={description} type="text" placeholder='Digite uma descrição/sinopse para o título' required onChange={(e) => { setDescription(e.target.value) }}/>
+                    <textarea value={description} type="text" placeholder='Digite uma descrição/sinopse para o título' required onChange={(e) => { setDescription(e.target.value) }}/>
 
                     <button style={{width:'fit-content', height:'fit-content'}} type={"submit"} disabled={disable}>Criar novo título</button>
 

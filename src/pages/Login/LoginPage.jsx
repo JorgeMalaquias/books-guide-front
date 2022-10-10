@@ -30,6 +30,7 @@ export default function LoginPage() {
             }
             axios.post(`${API_URL}/login`, body).then((r) => {
                 alert('Login feito com sucesso!');
+                setToken(r.data.token);
                 navigate(`/`);
             }).catch(error => {
                 alert('Login não foi feito. Ocorreu algum problema!');

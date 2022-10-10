@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
@@ -12,7 +12,7 @@ export default function HomePage() {
 
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
-console.log(token)
+    console.log(token)
 
 
     function PageContent() {
@@ -33,13 +33,23 @@ console.log(token)
         }
 
         function RecentTitles() {
-            const [titles, setTitles] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-            // get the data from api
+            const [titles, setTitles] = useState([]);
+            useEffect(()=>{
+                axios.get(`${API_URL}/titles/recents`).then((r)=>{
+                    setTitles(r.data);
+                }).catch(error => {
+                    console.error(error);
+                })
+            },[]);
             return (
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
                     <strong style={{ marginBottom: '30px', fontSize: '40px' }}>Títulos recentemente cadastrados</strong>
                     <TitlesTag>
-                        {titles.map((e) => <Title id={e.id} imageUrl={e.imageUrl} name={e.name} />)}
+                        {(titles.length===0)?
+                        'Não há títulos cadastrados :('
+                        :
+                        <>{titles.map((e) => <Title id={e.id} imageUrl={e.imageUrl} name={e.name} />)}</>
+                        }
                     </TitlesTag>
                 </div>
 
@@ -65,15 +75,23 @@ console.log(token)
 
             const [nTitles, setNTitles] = useState(0);
             const [nAuthors, setNAuthors] = useState(0);
-            const [nPublishers, setNPublishers] = useState(0);
 
-            // get the data from api
+            useEffect(()=>{
+                axios.get(`${API_URL}/titles/total`).then((r)=>{
+                    setNTitles(r.data.total);
+                }).catch(error => {
+                    console.error(error);
+                })
+                axios.get(`${API_URL}/authors/total`).then((r)=>{
+                    setNAuthors(r.data.total);
+                }).catch(error => {
+                    console.error(error);
+                })
+            },[])
             return (
                 <GeneralInfoTag>
-                    
                     <div>Nº total de títulos cadastrados : <strong>{nTitles}</strong> </div>
                     <div>Nº total de autores cadastrados : <strong>{nAuthors}</strong></div>
-                    <div>Nº total de editoras cadastradas : <strong>{nPublishers}</strong></div>
                 </GeneralInfoTag>
             );
         }
@@ -132,7 +150,7 @@ console.log(token)
                 <div>
                     <AppInfos />
                     <RecentTitles />
-                    <MostAccessedTitles />
+                    {/*<MostAccessedTitles />*/}
                 </div>
                 <div>
                     <TitleGeneralInfos />

@@ -17,24 +17,22 @@ export default function App() {
     const [token, setToken] = useState('');
     const [user, setUser] = useState('');
     const [searchName, setSearchName] = useState('');
-    
+
     return (
         <TokenContext.Provider value={{ token, setToken }}>
             <UserContext.Provider value={{ user, setUser }}>
-                <SearchNameContext.Provider value={{ searchName, setSearchName }}>
-                    <BrowserRouter>
-                        <ResetStyle />
-                        <GlobalStyle />
-                        <Routes>
-                            <Route path='/' element={<HomePage />} />
-                            <Route path='/register' element={<RegisterPage />} />
-                            <Route path='/login' element={<LoginPage />} />
-                            <Route path='/profile/:userId' element={<ProfilePage />} />
-                            <Route path='/title/:titleId' element={<TitlePage />} />
-                            <Route path='/search/:type' element={<SearchPage />} />
-                        </Routes>
-                    </BrowserRouter>
-                </SearchNameContext.Provider>
+                <BrowserRouter>
+                    <ResetStyle />
+                    <GlobalStyle />
+                    <Routes>
+                        <Route path='/' element={<HomePage />} />
+                        <Route path='/register' element={<RegisterPage />} />
+                        <Route path='/login' element={<LoginPage />} />
+                        <Route path='/profile/:userId' element={<ProfilePage />} />
+                        <Route path='/title/:titleId' element={<TitlePage />} />
+                        <Route path='/search/:type/:word' element={<SearchPage />} />
+                    </Routes>
+                </BrowserRouter>
             </UserContext.Provider>
         </TokenContext.Provider>
     );

@@ -12,15 +12,12 @@ export default function SearchPage() {
     const { type } = useParams();
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
-    const { searchName, setSearchName } = useContext(SearchNameContext);
-    const [name, setName] = useState(searchName);
+    const { word } = useParams();
+    const [name, setName] = useState(word);
     const [results, setResults] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setSearchName('');
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
 
     useEffect(() => {
         // requisitar busca na api

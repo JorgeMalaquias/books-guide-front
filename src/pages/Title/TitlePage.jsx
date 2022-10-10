@@ -10,22 +10,25 @@ export default function TitlePage() {
     const { titleId } = useParams();
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
+    const [titleData, setTitleData] = useState('');
+
+    const [isItOnMyCollection, setIsItOnMyCollection] = useState(true);
+    const [numberofCollections, setNumberofCollections] = useState(0);
 
     function PageContent() {
-        const [titleData, setTitleData] = useState('');
+
 
         function TitleCover() {
             return (
                 <TitleCoverTag>
-                    <strong>xablau</strong>
-                    <img src="https://m.media-amazon.com/images/I/61blY+DiS4L.jpg" alt={titleData.name} />
+                    <strong>{titleData.name}</strong>
+                    <img src={titleData.imageUrl} alt={titleData.name} />
                 </TitleCoverTag>
             );
         }
 
         function TitleInfos() {
-            const [isItOnMyCollection, setIsItOnMyCollection] = useState(true);
-            const [numberofCollections, setNumberofCollections] = useState(0);
+
             //get from api if it is in fact
             function addingTitleToCollection() {
                 //create a relation on the database

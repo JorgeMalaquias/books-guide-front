@@ -6,6 +6,8 @@ import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
 import SearchNameContext from '../../contexts/searchNameContext.js';
 import { Container, Page, Results, TitleTag, UserTag } from './SearchPageStyle.js';
+import axios from 'axios';
+import { API_URL, config } from '../../configs/data.js';
 
 export default function SearchPage() {
 
@@ -13,18 +15,23 @@ export default function SearchPage() {
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
     const { word } = useParams();
-    const [name, setName] = useState(word);
-    const [results, setResults] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    
     const navigate = useNavigate();
 
 
 
-    useEffect(() => {
-        // requisitar busca na api
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    
 
     function PageContent() {
+
+        const [results, setResults] = useState([]);
+        useEffect(() => {
+            axios.get(`${API_URL}/${type}/search/${word}`).then((r)=>{
+                setResults(r.data);
+            }).catch(error => {
+                console.error(error);
+            })
+        }, []);
 
         function Result({ imageUrl, name, id }) {
             return (

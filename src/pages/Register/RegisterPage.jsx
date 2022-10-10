@@ -4,54 +4,78 @@ import UserContext from '../../contexts/userContext.js';
 import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
 import { Container, Page } from './RegisterPageStyle.js';
+import axios from 'axios';
+import dotenv from 'dotenv';
+import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../configs/data.js';
+dotenv.config();
 
 export default function RegisterPage() {
 
     const { token, setToken } = useContext(TokenContext);
     const { user, setUser } = useContext(UserContext);
-    const [email,setEmail] = useState('');
-    const [name,setName] = useState('');
-    const [imageUrl,setImageUrl] = useState('');
-    const [password,setPassword]=useState('');
-    const [confirmpassword,setConfirmPassword] = useState('');
-    const [disable, setDisable] = useState(false);
 
-    function registering(){
-        setDisable(true);
-        if(password!==confirmpassword){
-            alert('As senhas digitadas não são iguais!');
+    
+    const navigate = useNavigate();
+
+    
+
+    function PageContent() {
+        const [email, setEmail] = useState('');
+        const [name, setName] = useState('');
+        const [imageUrl, setImageUrl] = useState('');
+        const [password, setPassword] = useState('');
+        const [confirmPassword, setConfirmPassword] = useState('');
+        const [disable, setDisable] = useState(false);
+
+        function registering(event) {
+            event.preventDefault();
+            setDisable(true);
+            if (password !== confirmPassword) {
+                alert('As senhas digitadas não são iguais!');
+            }
+            const body = {
+                name,
+                imageUrl,
+                email,
+                password,
+                confirmPassword
+            }
+            axios.post(`${API_URL}/register`, body).then((r) => {
+                alert('Cadastro feito com sucesso!');
+                navigate(`/login`);
+            }).catch(error => {
+                alert('Cadastro não foi feito. Ocorreu algum problema!');
+                console.error(error);
+            })
+    
+            setDisable(false);
         }
-        //
-
-         setDisable(false);//inserir no retorno da promise
-    }
-
-    function PageContent(){
-        return(
+        return (
             <Container>
                 <strong>Insira os dados para fazer seu cadastro</strong>
-                <form onSubmit={registering}>
+                <form onSubmit={(e)=>registering(e)}>
 
-                    <input value={name} type="text" placeholder='Digite seu nome de usuário'onChange={(e)=>setName(e.target.value)}/>
+                    <input value={name} type="text" placeholder='Digite seu nome de usuário' onChange={(e) => setName(e.target.value)} />
 
-                    <input value={imageUrl} type="text" placeholder='Digite a url da sua imagem' onChange={(e)=>setImageUrl(e.target.value)}/>
+                    <input value={imageUrl} type="text" placeholder='Digite a url da sua imagem' onChange={(e) => setImageUrl(e.target.value)} />
 
-                    <input value={email} type="text" placeholder='Digite seu email' onChange={(e)=>setEmail(e.target.value)}/>
+                    <input value={email} type="text" placeholder='Digite seu email' onChange={(e) => setEmail(e.target.value)} />
 
-                    <input value={password} type="text" placeholder='Digite sua senha'onChange={(e)=>setPassword(e.target.value)}/>
+                    <input value={password} type="text" placeholder='Digite sua senha' onChange={(e) => setPassword(e.target.value)} />
 
-                    <input value={confirmpassword} type="text" placeholder='Digite sua senha novamente' onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                    <input value={confirmPassword} type="text" placeholder='Digite sua senha novamente' onChange={(e) => setConfirmPassword(e.target.value)} />
 
-                    <button style={{width:'fit-content', height:'fit-content'}} type={"submit"} disabled={disable}>Cadastrar</button>
+                    <button style={{ width: 'fit-content', height: 'fit-content' }} type={"submit"} disabled={disable}>Cadastrar</button>
                 </form>
             </Container>
         );
     }
     return (
         <Page>
-            <Header/>
-            <PageContent/>
-            <Bottom/>
+            <Header />
+            <PageContent />
+            <Bottom />
         </Page>
     );
 }

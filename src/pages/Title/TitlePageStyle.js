@@ -4,6 +4,7 @@ export const Page = styled.div`
     position:relative;
     bottom: 0;
     width: 100%;
+    min-height: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;

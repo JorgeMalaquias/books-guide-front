@@ -16,6 +16,8 @@ export default function ProfilePage() {
     const [requests, setRequests] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [titles, setTitles] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [isFriend, setIsfriend] = useState(false);
+    const [isThereRequest,setIsThereRequest] = useState(true);
+
     const [reload, setReload] = useState(false);
     const navigate = useNavigate();
 

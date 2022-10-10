@@ -5,10 +5,9 @@ import Header from '../../components/Header/Header.jsx';
 import Bottom from '../../components/Bottom/Bottom.jsx';
 import { Container, Page } from './RegisterPageStyle.js';
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../configs/data.js';
-dotenv.config();
+
 
 export default function RegisterPage() {
 
